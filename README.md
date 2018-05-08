@@ -6,8 +6,11 @@ This repo deploys two Consul datacenters.  It deploys both the servers, and the 
 
 An existing GCP project and credentials file is required.  You will need to update those values into the packer/build.sh file first.  Then execute the build.sh file to create the machine images we will later deploy.
 
+Additionally, this assumes you are uploading a Consul executable (such as the Enterprise version).  Puppet can download the OSS version for you if you desire, but you would need to change the code.
+
 ```
 cd packer
+mkdir binaries && $PUT_CONSUL_BIN_HERE
 ./build.sh ~/.gcloud/default-ehron-env.json ehron-env us-east1-c
 ```
 
