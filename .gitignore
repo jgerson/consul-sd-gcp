@@ -1,4 +1,4 @@
 env.sh
 .terraform
 terraform.tf*
-packer/binaries
+packer/binaries/*
