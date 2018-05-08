@@ -35,14 +35,14 @@ resource "google_compute_instance" "client-east-web" {
 
   provisioner "remote-exec" {
     connection {
-      type  = "ssh"
-      user  = "deploy"
-      agent = true
+      type        = "ssh"
+      user        = "deploy"
+      private_key = "${var.ssh_key_data}"
     }
 
     inline = [
       "sudo mv /etc/consul/web.hcl.disabled /etc/consul/web.hcl",
-      "sudo systemctl restart consul.service"
+      "sudo systemctl restart consul.service",
     ]
   }
 }
@@ -84,14 +84,14 @@ resource "google_compute_instance" "client-west-web" {
 
   provisioner "remote-exec" {
     connection {
-      type  = "ssh"
-      user  = "deploy"
-      agent = true
+      type        = "ssh"
+      user        = "deploy"
+      private_key = "${var.ssh_key_data}"
     }
 
     inline = [
       "sudo mv /etc/consul/web.hcl.disabled /etc/consul/web.hcl",
-      "sudo systemctl restart consul.service"
+      "sudo systemctl restart consul.service",
     ]
   }
 }
@@ -133,14 +133,14 @@ resource "google_compute_instance" "client-west-cache" {
 
   provisioner "remote-exec" {
     connection {
-      type  = "ssh"
-      user  = "deploy"
-      agent = true
+      type        = "ssh"
+      user        = "deploy"
+      private_key = "${var.ssh_key_data}"
     }
 
     inline = [
       "sudo mv /etc/consul/cache.hcl.disabled /etc/consul/cache.hcl",
-      "sudo systemctl restart consul.service"
+      "sudo systemctl restart consul.service",
     ]
   }
 }
@@ -182,14 +182,14 @@ resource "google_compute_instance" "client-east-cache" {
 
   provisioner "remote-exec" {
     connection {
-      type  = "ssh"
-      user  = "deploy"
-      agent = true
+      type        = "ssh"
+      user        = "deploy"
+      private_key = "${var.ssh_key_data}"
     }
 
     inline = [
       "sudo mv /etc/consul/cache.hcl.disabled /etc/consul/cache.hcl",
-      "sudo systemctl restart consul.service"
+      "sudo systemctl restart consul.service",
     ]
   }
 }
@@ -231,14 +231,14 @@ resource "google_compute_instance" "client-west-db" {
 
   provisioner "remote-exec" {
     connection {
-      type  = "ssh"
-      user  = "deploy"
-      agent = true
+      type        = "ssh"
+      user        = "deploy"
+      private_key = "${var.ssh_key_data}"
     }
 
     inline = [
       "sudo mv /etc/consul/db.hcl.disabled /etc/consul/db.hcl",
-      "sudo systemctl restart consul.service"
+      "sudo systemctl restart consul.service",
     ]
   }
 }
@@ -280,14 +280,14 @@ resource "google_compute_instance" "client-east-db" {
 
   provisioner "remote-exec" {
     connection {
-      type  = "ssh"
-      user  = "deploy"
-      agent = true
+      type        = "ssh"
+      user        = "deploy"
+      private_key = "${var.ssh_key_data}"
     }
 
     inline = [
       "sudo mv /etc/consul/db.hcl.disabled /etc/consul/db.hcl",
-      "sudo systemctl restart consul.service"
+      "sudo systemctl restart consul.service",
     ]
   }
 }
@@ -328,9 +328,9 @@ resource "google_compute_instance" "client-esm" {
 
   provisioner "remote-exec" {
     connection {
-      type  = "ssh"
-      user  = "deploy"
-      agent = true
+      type        = "ssh"
+      user        = "deploy"
+      private_key = "${var.ssh_key_data}"
     }
 
     inline = [
@@ -340,7 +340,7 @@ resource "google_compute_instance" "client-esm" {
       "echo 'datacenter = \"west\" ' > config.hcl && sudo mv config.hcl /etc/consul-esm/",
       "echo 'consul-esm -config-file=/etc/consul-esm/config.hcl' > ~/run-consul-esm.sh",
       "sudo nohup consul-esm -config-file=/etc/consul-esm/config.hcl &",
-      "sleep 2"
+      "sleep 2",
     ]
   }
 }
